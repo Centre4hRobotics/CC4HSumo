@@ -7,10 +7,13 @@
 
 // Pin Assignments (from ArduMoto shield example)
 //Default pins:
-#define DIRA 2 // Direction control for motor A
+#define DIRA 12 // Direction control for motor A
 #define PWMA 3  // PWM control (speed) for motor A
-#define DIRB 4 // Direction control for motor B
+#define DIRB 13 // Direction control for motor B
 #define PWMB 11 // PWM control (speed) for motor B
+
+// max speed
+const int maxSpeed = 200; // 255 theoretical max, lower it a bit
 
 DriveMotors::DriveMotors() {
   // All pins should be setup as outputs:
@@ -20,8 +23,8 @@ DriveMotors::DriveMotors() {
   pinMode(DIRB, OUTPUT);
 
   // Initialize all pins as low:
-  digitalWrite(PWMA, LOW);
-  digitalWrite(PWMB, LOW);
+  analogWrite(PWMA, 0);
+  analogWrite(PWMB, 0);
   digitalWrite(DIRA, LOW);
   digitalWrite(DIRB, LOW);
 }
@@ -67,7 +70,7 @@ void DriveMotors::stop() {
 }
 
 void DriveMotors::setMotorSpeeds(double leftSpeed, double rightSpeed) {
-  setMotorSpeed(LEFT_MOTOR, leftSpeed);
+  setMotorSpeed(LEFT_MOTOR, -1*leftSpeed);
   setMotorSpeed(RIGHT_MOTOR, rightSpeed);
 }
 
@@ -83,7 +86,7 @@ void DriveMotors::setMotorSpeed(int motor, double speed) {
   }
 
   byte dir = (speed > 0) ? 0 : 1;
-  byte spd = 255 * fabs(speed);
+  byte spd = maxSpeed * fabs(speed);
   
   digitalWrite(directionPin, dir);
   analogWrite(speedPin, spd);

@@ -17,6 +17,10 @@ public:
     void waitForStartButton();
 
     /**
+     * Return true if the start button is pressed, false otherwise
+     */
+    bool isStartButtonPressed();
+    /**
      * Set state of LED 1
      */
     void setLed1(bool on);

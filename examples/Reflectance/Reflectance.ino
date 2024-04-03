@@ -14,8 +14,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  if (reflect.isLight()) 
+  if (reflect.isLight()) {
     board.setLed1(true);
-  else
-    board.setLed2(false);
+  }
+  else {
+    board.setLed1(false);
+  }
 }

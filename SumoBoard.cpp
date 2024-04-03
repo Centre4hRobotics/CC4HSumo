@@ -15,7 +15,13 @@ SumoBoard::SumoBoard() {
 }
 
 void SumoBoard::waitForStartButton() {
-    while(digitalRead(startButtonPin) == LOW) {}  
+    while(!isStartButtonPressed()) {
+        delay(20);
+    }
+}
+
+bool SumoBoard::isStartButtonPressed() {
+    return (digitalRead(startButtonPin) == HIGH);
 }
 
 void SumoBoard::setLed1(bool on) {
