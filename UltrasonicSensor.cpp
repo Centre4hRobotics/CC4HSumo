@@ -2,7 +2,7 @@
 
 
 // don't allow multiple reads less than a minimum delta
-const unsigned long readTimeDelta = 100;
+const unsigned long readTimeDelta = 50;
 
 UltrasonicSensor::UltrasonicSensor(int triggerPin, int echoPin, double maxDistanceInches)
 : _ultrasonic(triggerPin, echoPin)
@@ -18,6 +18,7 @@ double UltrasonicSensor::getDistanceInches() {
     }
 
     double val = _ultrasonic.read() / 2.54;
+
     if (val > _maxDistance)
         val = _maxDistance;
 
@@ -29,5 +30,5 @@ double UltrasonicSensor::getDistanceInches() {
 
 void UltrasonicSensor::setMaxDistanceInches(double distanceInches) {
     _maxDistance = distanceInches;
-    _ultrasonic.setTimeout(distanceInches * 74 * 2); // microseconds per inch
+    _ultrasonic.setTimeout(distanceInches * 74 * 3); // microseconds per inch
 }

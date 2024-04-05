@@ -9,7 +9,7 @@ const int led1Pin = 8;
 const int led2Pin = 9;
 
 SumoBoard::SumoBoard() {
-    pinMode(startButtonPin, INPUT);
+    pinMode(startButtonPin, INPUT_PULLUP);
     pinMode(led1Pin, OUTPUT);
     pinMode(led2Pin, OUTPUT);
 }
@@ -21,7 +21,7 @@ void SumoBoard::waitForStartButton() {
 }
 
 bool SumoBoard::isStartButtonPressed() {
-    return (digitalRead(startButtonPin) == HIGH);
+    return (digitalRead(startButtonPin) == LOW);
 }
 
 void SumoBoard::setLed1(bool on) {
