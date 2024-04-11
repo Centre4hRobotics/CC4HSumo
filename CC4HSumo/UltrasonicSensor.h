@@ -1,6 +1,6 @@
 #pragma once
 
-#include <LSM6.h>
+#include <Arduino.h>
 #include <Ultrasonic.h>
 
 /**
