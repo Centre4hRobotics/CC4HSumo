@@ -4,5 +4,6 @@
 #include "TouchSensor.h"
 #include "UltrasonicSensor.h"
 #include "ReflectanceSensor.h"
+#include "AnalogReflectanceSensor.h"
 #include "ServoMotor.h"
 #include "SumoBoard.h"
